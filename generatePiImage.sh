@@ -15,7 +15,7 @@ curl -sk https://api.github.com/repos/photonvision/photon-pi-gen/releases/tags/$
 IMG_FILE_NAME=$(realpath $(ls | grep image_*.zip))
 
 # Config files should be in this repo
-HW_CFG_FILE_NAME= $(realpath hardwareConfig.json)
+HW_CFG_FILE_NAME= $(realpath $(ls | grep hardwareConfig*.json))
 
 # Unzip and mount the image to be updated
 unzip $IMG_FILE_NAME
@@ -30,7 +30,7 @@ cd $TMP/opt/photonvision
 sudo cp $JAR_FILE_NAME photonvision.jar
 
 # Copy in custom hardware configuration 
-mkdir photonvision_config
+sudo mkdir photonvision_config
 cd photonvision_config
 sudo cp $HW_CFG_FILE_NAME hardwareConfig.json
 
