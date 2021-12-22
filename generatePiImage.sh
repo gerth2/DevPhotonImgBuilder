@@ -1,6 +1,6 @@
 PI_BASE_IMG_TAG=v2021.1.4
 PHOTONVISION_RELEASE_TAG=v2022.1.1-beta-2
-VENDOR_PREFIX=snakeyes
+VENDOR_PREFIX=putvendornamehere
 VENDOR_RELEASE=${RELEASE_VERSION}
 
 # Install dependencies
@@ -14,6 +14,9 @@ JAR_FILE_NAME=$(realpath $(ls | grep photonvision-v.*\.jar))
 curl -sk https://api.github.com/repos/photonvision/photon-pi-gen/releases/tags/${PI_BASE_IMG_TAG} | grep "browser_download_url.*zip" | cut -d : -f 2,3 | tr -d '"' | wget -qi -
 IMG_FILE_NAME=$(realpath $(ls | grep image_*.zip))
 
+# Config files should be in this repo
+HW_CFG_FILE_NAME= $(realpath ./hardwareConfig.json)
+
 # Unzip and mount the image to be updated
 unzip $IMG_FILE_NAME
 IMAGE_FILE=$(ls | grep *.img)
@@ -24,8 +27,12 @@ pushd .
 
 # Copy in the new .jar
 cd $TMP/opt/photonvision
-ls
 sudo cp $JAR_FILE_NAME photonvision.jar
+
+# Copy in custom hardware configuration 
+mkdir photonvision_config
+cd photonvision_config
+sudo cp $HW_CFG_FILE_NAME hardwareConfig.json
 
 # Cleanup
 popd
