@@ -32,7 +32,7 @@ sudo cp $JAR_FILE_NAME photonvision.jar
 # Copy in custom hardware configuration 
 sudo mkdir photonvision_config
 cd photonvision_config
-sudo cp $HW_CFG_FILE_NAME hardwareConfig.json
+sudo cp ${HW_CFG_FILE_NAME} hardwareConfig.json
 
 # Cleanup
 popd
