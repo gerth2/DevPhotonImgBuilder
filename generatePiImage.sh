@@ -1,5 +1,5 @@
-PHOTONVISION_RELEASE_TAG=v2022.1.1-beta-2
 PI_BASE_IMG_TAG=v2021.1.4
+PHOTONVISION_RELEASE_TAG=$RELEASE_VERSION
 
 # Install dependencies
 sudo apt install unzip zip
