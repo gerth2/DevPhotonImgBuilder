@@ -15,7 +15,7 @@ curl -sk https://api.github.com/repos/photonvision/photon-pi-gen/releases/tags/$
 IMG_FILE_NAME=$(realpath $(ls | grep image_*.zip))
 
 # Config files should be in this repo
-HW_CFG_FILE_NAME= hardwareConfig.json
+HW_CFG_FILE_NAME="hardwareConfig.json"
 
 # Unzip and mount the image to be updated
 unzip $IMG_FILE_NAME
