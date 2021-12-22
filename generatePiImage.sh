@@ -6,11 +6,11 @@ sudo apt install unzip zip
 
 # Download new jar from photonvision main repo
 curl -sk https://api.github.com/repos/photonvision/photonvision/releases/tags/${PHOTONVISION_RELEASE_TAG} | grep "browser_download_url.*photonvision-.*\.jar" | cut -d : -f 2,3 | tr -d '"' | wget -qi -
-JAR_FILE_NAME=$(ls | grep photonvision-v.*\.jar)
+JAR_FILE_NAME=$(realpath $(ls | grep photonvision-v.*\.jar))
 
 # Download base image from pigen repo
 curl -sk https://api.github.com/repos/photonvision/photon-pi-gen/releases/tags/${PI_BASE_IMG_TAG} | grep "browser_download_url.*zip" | cut -d : -f 2,3 | tr -d '"' | wget -qi -
-IMG_FILE_NAME=$(ls | grep image_*.zip)
+IMG_FILE_NAME=$(realpath $(ls | grep image_*.zip))
 
 # Unzip and mount the image to be updated
 unzip $IMG_FILE_NAME

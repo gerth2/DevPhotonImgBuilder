@@ -19,11 +19,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # This *should* pull in fat and pi-only jars
-      - uses: actions/download-artifact@v2
-        with:
-          name: jar
+      # Checkout code.
+      - uses: actions/checkout@v1
 
       - run: |
           chmod +x generatePiImage.sh
           ./generatePiImage.sh
+
+      - uses: softprops/action-gh-release@v1
+        with:
+          files: '**/*'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
